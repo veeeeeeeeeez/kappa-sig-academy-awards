@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Academy Awardzzorz 2026</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="stage">
+    <!-- Intro slide -->
+    <section class="slide intro active" data-stage="intro">
+      <div class="spotlights"><span></span><span></span><span></span></div>
+      <div class="intro-inner">
+        <div class="kicker">⭐ The 2026 ⭐</div>
+        <h1 class="title-massive">
+          <span>ACADEMY</span><span>AWARDZZORZ</span>
+        </h1>
+        <div class="subtitle">A Ceremony of Distinguished Brotherhood</div>
+        <div class="press-hint">press <kbd>SPACE</kbd> or <kbd>→</kbd> to begin</div>
+      </div>
+    </section>
+
+    <!-- Award slides injected here -->
+    <div id="awards-container"></div>
+
+    <!-- Outro slide -->
+    <section class="slide outro" data-stage="outro">
+      <div class="intro-inner">
+        <div class="kicker">⭐ Thank you ⭐</div>
+        <h1 class="title-massive"><span>THAT'S A</span><span>WRAP</span></h1>
+        <div class="subtitle">See you next year, kings.</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="hud">
+    <div id="counter">1 / 1</div>
+    <div id="award-name"></div>
+  </div>
+
+  <div id="hint">
+    <kbd>←</kbd> back &nbsp;·&nbsp; <kbd>→</kbd>/<kbd>SPACE</kbd> next &nbsp;·&nbsp; <kbd>F</kbd> fullscreen
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
