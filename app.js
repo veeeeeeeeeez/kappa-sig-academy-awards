@@ -1,10 +1,11 @@
 // ===== Academy Awardzzorz slideshow =====
-// Loads results.json, builds one slide per award, and reveals bronze -> silver -> gold.
+// Loads results.json. Per award: an Honorable Mention slide (#4), then a podium
+// slide that reveals bronze -> silver -> [drumroll] -> gold.
 
 const PLACES = [
-  { key: "bronze", label: "3", medal: "3", placeWord: "BRONZE" },
-  { key: "silver", label: "2", medal: "2", placeWord: "SILVER" },
-  { key: "gold",   label: "1", medal: "1", placeWord: "GOLD"   },
+  { key: "bronze", label: "3" },
+  { key: "silver", label: "2" },
+  { key: "gold",   label: "1" },
 ];
 
 const colorMap = {
@@ -12,6 +13,8 @@ const colorMap = {
   silver: { burst: ["#fafbff", "#d8d8e0", "#8a8a9a", "#ffffff"] },
   bronze: { burst: ["#f1b97e", "#d68a4c", "#7a4a1f", "#ffd4a6"] },
 };
+
+const GOLD_DRUMROLL_MS = 1500;
 
 function initials(name) {
   return name
@@ -28,21 +31,37 @@ async function loadResults() {
   return await resp.json();
 }
 
-function makeAwardSlide(award, idx) {
+// ----- slide builders -----
+function makeHonorableSlide(award, idx) {
+  const hm = award.results[3] || null;
+  const slide = document.createElement("section");
+  slide.className = "slide hm-slide";
+  slide.dataset.stage = "hm";
+  slide.dataset.idx = String(idx);
+
+  slide.innerHTML = `
+    <div class="hm-award-title">${escapeHTML(award.title)}</div>
+    <div class="hm-banner">HONORABLE MENTION</div>
+    <div class="hm-figure">
+      <div class="hm-ribbon">4TH PLACE</div>
+      <div class="avatar hm-avatar">${escapeHTML(hm ? initials(hm.name) || "?" : "—")}</div>
+      <div class="hm-name">${escapeHTML(hm ? hm.name : "—")}</div>
+      <div class="hm-votes">${hm ? hm.votes : 0} vote${hm && hm.votes === 1 ? "" : "s"}</div>
+    </div>
+    <div class="hm-sub">so close, yet so far</div>
+  `;
+  return slide;
+}
+
+function makePodiumSlide(award, idx) {
   const slide = document.createElement("section");
   slide.className = "slide award-slide";
   slide.dataset.stage = "award";
   slide.dataset.idx = String(idx);
 
   const top3 = award.results.slice(0, 3);
-  // If we have fewer than 3 distinct results, fill with placeholders so the podium layout still works.
   while (top3.length < 3) top3.push({ name: "—", votes: 0 });
-
-  const placements = {
-    gold:   top3[0],
-    silver: top3[1],
-    bronze: top3[2],
-  };
+  const placements = { gold: top3[0], silver: top3[1], bronze: top3[2] };
 
   const title = document.createElement("h2");
   title.className = "award-title";
@@ -50,7 +69,7 @@ function makeAwardSlide(award, idx) {
 
   const sub = document.createElement("div");
   sub.className = "award-sub";
-  sub.textContent = "— and the nominees are —";
+  sub.textContent = "— the podium —";
 
   const podium = document.createElement("div");
   podium.className = "podium-wrap";
@@ -86,13 +105,8 @@ function makeAwardSlide(award, idx) {
     card.appendChild(nameEl);
     card.appendChild(votesEl);
 
-    const medal = document.createElement("div");
-    medal.className = `medal ${place.key}`;
-    medal.textContent = place.medal;
-
     fig.appendChild(avatar);
     fig.appendChild(card);
-    fig.appendChild(medal);
 
     const block = document.createElement("div");
     block.className = `block ${place.key}`;
@@ -106,35 +120,51 @@ function makeAwardSlide(award, idx) {
     podium.appendChild(spot);
   }
 
+  // Drumroll overlay (hidden by default).
+  const drumOverlay = document.createElement("div");
+  drumOverlay.className = "drumroll-overlay";
+  drumOverlay.innerHTML = `<div class="drumroll-text">AND THE WINNER IS<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>`;
+  slide.appendChild(drumOverlay);
+
   slide.appendChild(title);
   slide.appendChild(sub);
   slide.appendChild(podium);
   return slide;
 }
 
-// ===== State machine =====
-const state = {
-  slides: [],          // array of section elements (intro, awards..., outro)
-  awardSlides: [],     // just the award slides
-  cur: 0,              // index in slides
-  reveal: 0,           // 0..3 reveal state for current award slide (0=none, 1=bronze, 2=silver, 3=gold)
-};
-
-function currentSlide() {
-  return state.slides[state.cur];
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[c]);
 }
 
-function setActive(idx) {
+// ===== State machine =====
+const state = {
+  slides: [],
+  awardCount: 0,
+  cur: 0,
+  reveal: 0,      // 0..3 podium reveal state
+  busy: false,    // true during drumroll, blocks input
+};
+
+function currentSlide() { return state.slides[state.cur]; }
+
+function setActive(idx, opts = {}) {
   state.slides.forEach((s, i) => s.classList.toggle("active", i === idx));
   state.cur = idx;
   state.reveal = 0;
   resetReveals();
+  if (opts.fullyReveal && currentSlide().dataset.stage === "award") {
+    currentSlide().querySelectorAll(".spot").forEach(s => s.classList.add("revealed"));
+    state.reveal = 3;
+  }
   updateHUD();
 }
 
 function resetReveals() {
   const slide = currentSlide();
   if (!slide || slide.dataset.stage !== "award") return;
+  slide.classList.remove("drumroll-active");
   slide.querySelectorAll(".spot").forEach(s => s.classList.remove("revealed"));
 }
 
@@ -142,11 +172,14 @@ function updateHUD() {
   const counter = document.getElementById("counter");
   const awardName = document.getElementById("award-name");
   const slide = currentSlide();
-  if (slide.dataset.stage === "award") {
+  const stage = slide.dataset.stage;
+  if (stage === "award" || stage === "hm") {
     const idx = parseInt(slide.dataset.idx, 10);
-    counter.textContent = `AWARD ${idx + 1} / ${state.awardSlides.length}`;
-    awardName.textContent = slide.querySelector(".award-title").textContent;
-  } else if (slide.dataset.stage === "intro") {
+    counter.textContent = `AWARD ${idx + 1} / ${state.awardCount}`;
+    awardName.textContent = stage === "award"
+      ? slide.querySelector(".award-title").textContent
+      : slide.querySelector(".hm-award-title").textContent;
+  } else if (stage === "intro") {
     counter.textContent = "WELCOME";
     awardName.textContent = "";
   } else {
@@ -157,17 +190,19 @@ function updateHUD() {
 
 // ===== Advance / Back =====
 function advance() {
+  if (state.busy) return;
   const slide = currentSlide();
   if (slide.dataset.stage === "award" && state.reveal < 3) {
-    state.reveal += 1;
-    const key = PLACES[state.reveal - 1].key;
-    const spot = slide.querySelector(`.spot.${key}`);
-    spot.classList.add("revealed");
-    sfx(key);
-    burst(spot, key);
-    if (key === "gold") {
-      bigBurst();
+    const nextKey = PLACES[state.reveal].key;
+    if (nextKey === "gold") {
+      doGoldReveal(slide);
+      return;
     }
+    state.reveal += 1;
+    const spot = slide.querySelector(`.spot.${nextKey}`);
+    spot.classList.add("revealed");
+    sfx(nextKey);
+    setTimeout(() => burst(spot, nextKey), 150);
     return;
   }
   if (state.cur < state.slides.length - 1) {
@@ -175,25 +210,36 @@ function advance() {
   }
 }
 
+function doGoldReveal(slide) {
+  state.busy = true;
+  slide.classList.add("drumroll-active");
+  drumrollSfx(GOLD_DRUMROLL_MS / 1000);
+  setTimeout(() => {
+    slide.classList.remove("drumroll-active");
+    const spot = slide.querySelector(`.spot.gold`);
+    spot.classList.add("revealed");
+    state.reveal = 3;
+    fanfareSfx();
+    setTimeout(() => {
+      burst(spot, "gold");
+      bigBurst();
+    }, 250);
+    state.busy = false;
+  }, GOLD_DRUMROLL_MS);
+}
+
 function back() {
+  if (state.busy) return;
   const slide = currentSlide();
   if (slide.dataset.stage === "award" && state.reveal > 0) {
     state.reveal -= 1;
-    const key = PLACES[state.reveal] ? PLACES[state.reveal].key : null;
-    if (key) {
-      const spot = slide.querySelector(`.spot.${key}`);
-      spot.classList.remove("revealed");
-    }
+    const key = PLACES[state.reveal].key;
+    const spot = slide.querySelector(`.spot.${key}`);
+    spot.classList.remove("revealed");
     return;
   }
   if (state.cur > 0) {
-    setActive(state.cur - 1);
-    // Jump straight to fully revealed when going backwards into an award slide.
-    const prev = currentSlide();
-    if (prev.dataset.stage === "award") {
-      prev.querySelectorAll(".spot").forEach(s => s.classList.add("revealed"));
-      state.reveal = 3;
-    }
+    setActive(state.cur - 1, { fullyReveal: true });
   }
 }
 
@@ -240,7 +286,7 @@ function bigBurst() {
   const colors = ["#ffe27a", "#ffd24a", "#b8860b", "#fff7c2", "#ff7eb6", "#7ab8ff"];
   const w = window.innerWidth, h = window.innerHeight;
   spawn(w * 0.2, h * 0.5, colors, 80, 1.5);
-  spawn(w * 0.5, h * 0.4, colors, 100, 1.6);
+  spawn(w * 0.5, h * 0.4, colors, 120, 1.6);
   spawn(w * 0.8, h * 0.5, colors, 80, 1.5);
 }
 
@@ -300,13 +346,51 @@ function sfx(placeKey) {
   } else if (placeKey === "silver") {
     tone(440, 0.35, "triangle", 0.13);
     tone(660, 0.45, "sine", 0.09, 0.05);
-  } else if (placeKey === "gold") {
-    // Fanfare
-    [523, 659, 784, 1047].forEach((f, i) => {
-      tone(f, 0.5, "triangle", 0.14, i * 0.12);
-    });
-    tone(1568, 0.7, "sine", 0.08, 0.5);
   }
+}
+
+function drumrollSfx(duration) {
+  const ctx = getAudio();
+  const start = ctx.currentTime;
+  const hits = Math.floor(duration * 18); // ~18 hits/sec, accelerating
+  for (let i = 0; i < hits; i++) {
+    // Slight acceleration toward the end
+    const progress = i / hits;
+    const t = start + duration * (progress ** 0.85);
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(85 + Math.random() * 25, t);
+    const peak = 0.08 + progress * 0.12;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(peak, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+    osc.connect(g).connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 0.06);
+  }
+  // Final cymbal-ish crash at the end
+  const crashT = start + duration;
+  const crash = ctx.createOscillator();
+  const cg = ctx.createGain();
+  crash.type = "sawtooth";
+  crash.frequency.setValueAtTime(1200, crashT);
+  crash.frequency.exponentialRampToValueAtTime(220, crashT + 0.5);
+  cg.gain.setValueAtTime(0, crashT);
+  cg.gain.linearRampToValueAtTime(0.18, crashT + 0.01);
+  cg.gain.exponentialRampToValueAtTime(0.001, crashT + 0.7);
+  crash.connect(cg).connect(ctx.destination);
+  crash.start(crashT);
+  crash.stop(crashT + 0.75);
+}
+
+function fanfareSfx() {
+  // Big triumphant chord sequence on gold reveal.
+  [523, 659, 784, 1047].forEach((f, i) => {
+    tone(f, 0.6, "triangle", 0.14, i * 0.1);
+  });
+  tone(1568, 0.9, "sine", 0.08, 0.45);
+  tone(261, 0.9, "sawtooth", 0.06, 0); // sub
 }
 
 // ===== Keyboard =====
@@ -327,7 +411,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Click anywhere to advance (but not on hint/HUD).
 document.addEventListener("click", (e) => {
   if (e.target.closest("#hud") || e.target.closest("#hint")) return;
   advance();
@@ -341,11 +424,11 @@ document.addEventListener("click", (e) => {
   const outro = document.querySelector(".outro");
 
   data.awards.forEach((award, idx) => {
-    const slide = makeAwardSlide(award, idx);
-    container.appendChild(slide);
+    container.appendChild(makeHonorableSlide(award, idx));
+    container.appendChild(makePodiumSlide(award, idx));
   });
 
   state.slides = [intro, ...container.children, outro];
-  state.awardSlides = Array.from(container.children);
+  state.awardCount = data.awards.length;
   setActive(0);
 })();
