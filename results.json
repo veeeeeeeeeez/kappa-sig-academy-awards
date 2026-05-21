@@ -5,7 +5,7 @@
       "results": [
         {
           "name": "Callen Bronson",
-          "votes": 12
+          "votes": 15
         },
         {
           "name": "Brian Shah",
@@ -37,6 +37,10 @@
         },
         {
           "name": "Theo Chiang",
+          "votes": 2
+        },
+        {
+          "name": "Moritz Schreyogg",
           "votes": 2
         },
         {
@@ -94,10 +98,6 @@
         {
           "name": "Jack Younger",
           "votes": 1
-        },
-        {
-          "name": "Moritz Schreyogg",
-          "votes": 1
         }
       ]
     },
@@ -106,7 +106,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 14
+          "votes": 16
         },
         {
           "name": "Will Reimers",
@@ -115,6 +115,10 @@
         {
           "name": "Wiley Kendall",
           "votes": 5
+        },
+        {
+          "name": "Sawyer Rogoff",
+          "votes": 3
         },
         {
           "name": "Madhav Prakash",
@@ -126,10 +130,6 @@
         },
         {
           "name": "Owen Rowe",
-          "votes": 2
-        },
-        {
-          "name": "Sawyer Rogoff",
           "votes": 2
         },
         {
@@ -183,6 +183,10 @@
         {
           "name": "Alex Nania",
           "votes": 1
+        },
+        {
+          "name": "Garner Duncan",
+          "votes": 1
         }
       ]
     },
@@ -191,7 +195,7 @@
       "results": [
         {
           "name": "Vincent Zhou",
-          "votes": 15
+          "votes": 16
         },
         {
           "name": "Patrick Holden",
@@ -199,7 +203,7 @@
         },
         {
           "name": "Weston Hicks",
-          "votes": 5
+          "votes": 6
         },
         {
           "name": "Nirvaan",
@@ -260,6 +264,14 @@
         {
           "name": "David John",
           "votes": 1
+        },
+        {
+          "name": "Barrow Solomon",
+          "votes": 1
+        },
+        {
+          "name": "Jules Lustig",
+          "votes": 1
         }
       ]
     },
@@ -268,23 +280,23 @@
       "results": [
         {
           "name": "Nirvaan",
-          "votes": 8
+          "votes": 9
+        },
+        {
+          "name": "Weston Hicks",
+          "votes": 7
         },
         {
           "name": "Pierce Gurtner",
           "votes": 6
         },
         {
-          "name": "Weston Hicks",
+          "name": "David John",
           "votes": 6
         },
         {
-          "name": "David John",
-          "votes": 5
-        },
-        {
           "name": "Sam Samani",
-          "votes": 4
+          "votes": 5
         },
         {
           "name": "Jared Hammerstrom",
@@ -352,12 +364,12 @@
       "title": "Worst GroupMe member",
       "results": [
         {
-          "name": "Vincent Zhou",
-          "votes": 13
+          "name": "David John",
+          "votes": 14
         },
         {
-          "name": "David John",
-          "votes": 12
+          "name": "Vincent Zhou",
+          "votes": 13
         },
         {
           "name": "Bobby McAdams",
@@ -418,6 +430,14 @@
         {
           "name": "Jack Griffin",
           "votes": 1
+        },
+        {
+          "name": "Garner Duncan",
+          "votes": 1
+        },
+        {
+          "name": "Barrow Solomon",
+          "votes": 1
         }
       ]
     },
@@ -426,7 +446,7 @@
       "results": [
         {
           "name": "Owen Rowe",
-          "votes": 21
+          "votes": 23
         },
         {
           "name": "Callen Bronson",
@@ -453,6 +473,14 @@
           "votes": 2
         },
         {
+          "name": "Garner Duncan",
+          "votes": 2
+        },
+        {
+          "name": "Patrick Holden",
+          "votes": 2
+        },
+        {
           "name": "Roome Becker",
           "votes": 1
         },
@@ -473,15 +501,7 @@
           "votes": 1
         },
         {
-          "name": "Garner Duncan",
-          "votes": 1
-        },
-        {
           "name": "Jackson Zane",
-          "votes": 1
-        },
-        {
-          "name": "Patrick Holden",
           "votes": 1
         },
         {
@@ -507,7 +527,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 41
+          "votes": 45
         },
         {
           "name": "Nirvaan",
@@ -548,11 +568,11 @@
       "results": [
         {
           "name": "David John",
-          "votes": 15
+          "votes": 16
         },
         {
           "name": "Will Reimers",
-          "votes": 8
+          "votes": 9
         },
         {
           "name": "Callen Bronson",
@@ -625,6 +645,14 @@
         {
           "name": "Brian Shah",
           "votes": 1
+        },
+        {
+          "name": "Sam Samani",
+          "votes": 1
+        },
+        {
+          "name": "Adam Rourke",
+          "votes": 1
         }
       ]
     },
@@ -633,7 +661,7 @@
       "results": [
         {
           "name": "Edgar Diaz",
-          "votes": 8
+          "votes": 10
         },
         {
           "name": "Alex Acra",
@@ -642,6 +670,10 @@
         {
           "name": "Jared Hammerstrom",
           "votes": 4
+        },
+        {
+          "name": "Justin Juebner",
+          "votes": 3
         },
         {
           "name": "Josh Walensky",
@@ -657,10 +689,6 @@
         },
         {
           "name": "Maddox de Bretteville",
-          "votes": 2
-        },
-        {
-          "name": "Justin Juebner",
           "votes": 2
         },
         {
@@ -714,6 +742,10 @@
         {
           "name": "Elan Lerner",
           "votes": 1
+        },
+        {
+          "name": "Roan Howard",
+          "votes": 1
         }
       ]
     },
@@ -722,18 +754,18 @@
       "results": [
         {
           "name": "Alex Nania",
-          "votes": 15
+          "votes": 16
         },
         {
           "name": "Lucas Gravina",
-          "votes": 14
-        },
-        {
-          "name": "Maddox de Bretteville",
-          "votes": 10
+          "votes": 15
         },
         {
           "name": "Sam Samani",
+          "votes": 11
+        },
+        {
+          "name": "Maddox de Bretteville",
           "votes": 10
         },
         {
@@ -827,6 +859,22 @@
         {
           "name": "Gentry Otero",
           "votes": 1
+        },
+        {
+          "name": "Callen Bronson",
+          "votes": 1
+        },
+        {
+          "name": "Garner Duncan",
+          "votes": 1
+        },
+        {
+          "name": "Josh Koo",
+          "votes": 1
+        },
+        {
+          "name": "Ose Okhihan",
+          "votes": 1
         }
       ]
     },
@@ -835,7 +883,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 14
+          "votes": 16
         },
         {
           "name": "Garner Duncan",
@@ -874,6 +922,10 @@
           "votes": 2
         },
         {
+          "name": "Madhav Prakash",
+          "votes": 2
+        },
+        {
           "name": "Gabe George",
           "votes": 1
         },
@@ -906,7 +958,7 @@
           "votes": 1
         },
         {
-          "name": "Madhav Prakash",
+          "name": "Alex Nania",
           "votes": 1
         }
       ]
@@ -920,19 +972,23 @@
         },
         {
           "name": "Sam Samani",
-          "votes": 6
+          "votes": 7
         },
         {
           "name": "Wiley Kendall",
           "votes": 6
         },
         {
+          "name": "Garner Duncan",
+          "votes": 5
+        },
+        {
           "name": "Nirvaan",
           "votes": 4
         },
         {
-          "name": "Garner Duncan",
-          "votes": 4
+          "name": "Maddox de Bretteville",
+          "votes": 3
         },
         {
           "name": "Barrow Solomon",
@@ -943,7 +999,7 @@
           "votes": 2
         },
         {
-          "name": "Maddox de Bretteville",
+          "name": "Theo Chiang",
           "votes": 2
         },
         {
@@ -1005,10 +1061,6 @@
         {
           "name": "Sami Raskin",
           "votes": 1
-        },
-        {
-          "name": "Theo Chiang",
-          "votes": 1
         }
       ]
     },
@@ -1017,11 +1069,11 @@
       "results": [
         {
           "name": "Hudson Addams",
-          "votes": 12
+          "votes": 13
         },
         {
           "name": "Ilan Arias",
-          "votes": 9
+          "votes": 10
         },
         {
           "name": "Ben Manning",
@@ -1040,6 +1092,10 @@
           "votes": 2
         },
         {
+          "name": "Josh Koo",
+          "votes": 2
+        },
+        {
           "name": "David John",
           "votes": 2
         },
@@ -1053,10 +1109,6 @@
         },
         {
           "name": "Bobby McAdams",
-          "votes": 1
-        },
-        {
-          "name": "Josh Koo",
           "votes": 1
         },
         {
@@ -1094,6 +1146,10 @@
         {
           "name": "Lucas Gravina",
           "votes": 1
+        },
+        {
+          "name": "Callen Bronson",
+          "votes": 1
         }
       ]
     },
@@ -1102,14 +1158,14 @@
       "results": [
         {
           "name": "Ben Manning",
-          "votes": 10
-        },
-        {
-          "name": "Wiley Kendall",
-          "votes": 7
+          "votes": 12
         },
         {
           "name": "Callen Bronson",
+          "votes": 8
+        },
+        {
+          "name": "Wiley Kendall",
           "votes": 7
         },
         {
@@ -1117,11 +1173,11 @@
           "votes": 6
         },
         {
-          "name": "Sami Raskin",
-          "votes": 3
+          "name": "Ilan Arias",
+          "votes": 4
         },
         {
-          "name": "Ilan Arias",
+          "name": "Sami Raskin",
           "votes": 3
         },
         {
@@ -1175,19 +1231,19 @@
         },
         {
           "name": "Callen Bronson",
+          "votes": 6
+        },
+        {
+          "name": "Ilan Arias",
           "votes": 5
+        },
+        {
+          "name": "David John",
+          "votes": 4
         },
         {
           "name": "Barrow Solomon",
           "votes": 4
-        },
-        {
-          "name": "Ilan Arias",
-          "votes": 4
-        },
-        {
-          "name": "David John",
-          "votes": 3
         },
         {
           "name": "Maddox de Bretteville",
@@ -1199,6 +1255,10 @@
         },
         {
           "name": "Jared Hammerstrom",
+          "votes": 2
+        },
+        {
+          "name": "Alex Acra",
           "votes": 2
         },
         {
@@ -1223,10 +1283,6 @@
         },
         {
           "name": "Sam Samani",
-          "votes": 1
-        },
-        {
-          "name": "Alex Acra",
           "votes": 1
         },
         {
@@ -1256,7 +1312,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 6
+          "votes": 7
         },
         {
           "name": "Allen Thomason",
@@ -1268,7 +1324,7 @@
         },
         {
           "name": "Callen Bronson",
-          "votes": 3
+          "votes": 5
         },
         {
           "name": "Nirvaan",
@@ -1361,6 +1417,10 @@
         {
           "name": "Bobby McAdams",
           "votes": 1
+        },
+        {
+          "name": "Moritz Schreyogg",
+          "votes": 1
         }
       ]
     },
@@ -1369,15 +1429,15 @@
       "results": [
         {
           "name": "Ilan Arias",
-          "votes": 18
+          "votes": 20
         },
         {
           "name": "Callen Bronson",
-          "votes": 14
+          "votes": 15
         },
         {
           "name": "Elan Lerner",
-          "votes": 7
+          "votes": 8
         },
         {
           "name": "Jared Hammerstrom",
@@ -1410,11 +1470,11 @@
       "results": [
         {
           "name": "David John",
-          "votes": 23
+          "votes": 25
         },
         {
           "name": "Sawyer Rogoff",
-          "votes": 9
+          "votes": 10
         },
         {
           "name": "Alex Nania",
@@ -1467,6 +1527,10 @@
         {
           "name": "Garner Duncan",
           "votes": 1
+        },
+        {
+          "name": "Madhav Prakash",
+          "votes": 1
         }
       ]
     },
@@ -1475,11 +1539,11 @@
       "results": [
         {
           "name": "Loran Baxter Mercado",
-          "votes": 18
+          "votes": 20
         },
         {
           "name": "Ashal Ali",
-          "votes": 11
+          "votes": 12
         },
         {
           "name": "Sawyer Rogoff",
@@ -1495,6 +1559,10 @@
         },
         {
           "name": "Jackson Zane",
+          "votes": 2
+        },
+        {
+          "name": "Alex Nania",
           "votes": 2
         },
         {
@@ -1528,10 +1596,6 @@
         {
           "name": "Rod Azghadi",
           "votes": 1
-        },
-        {
-          "name": "Alex Nania",
-          "votes": 1
         }
       ]
     },
@@ -1540,7 +1604,7 @@
       "results": [
         {
           "name": "Callen Bronson",
-          "votes": 21
+          "votes": 23
         },
         {
           "name": "David John",
@@ -1572,6 +1636,10 @@
         },
         {
           "name": "Josh Koo",
+          "votes": 2
+        },
+        {
+          "name": "Brian Shah",
           "votes": 2
         },
         {
@@ -1607,7 +1675,7 @@
           "votes": 1
         },
         {
-          "name": "Brian Shah",
+          "name": "Gabe George",
           "votes": 1
         }
       ]
@@ -1621,11 +1689,11 @@
         },
         {
           "name": "Jack Younger",
-          "votes": 8
+          "votes": 9
         },
         {
           "name": "Sam Samani",
-          "votes": 3
+          "votes": 4
         },
         {
           "name": "Alex Nania",
@@ -1678,6 +1746,14 @@
         {
           "name": "Gentry Otero",
           "votes": 1
+        },
+        {
+          "name": "Gabe George",
+          "votes": 1
+        },
+        {
+          "name": "Yash Mehta",
+          "votes": 1
         }
       ]
     },
@@ -1686,7 +1762,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 7
+          "votes": 9
         },
         {
           "name": "Garner Duncan",
@@ -1718,6 +1794,10 @@
         },
         {
           "name": "Mathurin LeDorze",
+          "votes": 3
+        },
+        {
+          "name": "Madhav Prakash",
           "votes": 2
         },
         {
@@ -1742,10 +1822,6 @@
         },
         {
           "name": "Justin Juebner",
-          "votes": 1
-        },
-        {
-          "name": "Madhav Prakash",
           "votes": 1
         },
         {
@@ -1794,11 +1870,15 @@
           "votes": 5
         },
         {
+          "name": "Gabe George",
+          "votes": 4
+        },
+        {
           "name": "Garner Duncan",
           "votes": 3
         },
         {
-          "name": "Gabe George",
+          "name": "David John",
           "votes": 3
         },
         {
@@ -1810,7 +1890,7 @@
           "votes": 2
         },
         {
-          "name": "David John",
+          "name": "Madhav Prakash",
           "votes": 2
         },
         {
@@ -1839,10 +1919,6 @@
         },
         {
           "name": "Yash Mehta",
-          "votes": 1
-        },
-        {
-          "name": "Madhav Prakash",
           "votes": 1
         },
         {
@@ -1884,6 +1960,10 @@
         {
           "name": "Josh Walensky",
           "votes": 1
+        },
+        {
+          "name": "Jack Griffin",
+          "votes": 1
         }
       ]
     },
@@ -1892,7 +1972,7 @@
       "results": [
         {
           "name": "Madhav Prakash",
-          "votes": 21
+          "votes": 24
         },
         {
           "name": "Alex Nania",
@@ -1901,6 +1981,10 @@
         {
           "name": "Edgar Diaz",
           "votes": 5
+        },
+        {
+          "name": "Lucas Gravina",
+          "votes": 3
         },
         {
           "name": "Will Reimers",
@@ -1912,10 +1996,6 @@
         },
         {
           "name": "Sam Samani",
-          "votes": 2
-        },
-        {
-          "name": "Lucas Gravina",
           "votes": 2
         },
         {
@@ -1953,7 +2033,7 @@
       "results": [
         {
           "name": "Coochie",
-          "votes": 10
+          "votes": 12
         },
         {
           "name": "Jack Younger",
@@ -1976,11 +2056,19 @@
           "votes": 3
         },
         {
+          "name": "Ose Okhihan",
+          "votes": 2
+        },
+        {
           "name": "Alex Nania",
           "votes": 2
         },
         {
           "name": "Josh Walensky",
+          "votes": 2
+        },
+        {
+          "name": "Callen Bronson",
           "votes": 2
         },
         {
@@ -2000,15 +2088,7 @@
           "votes": 1
         },
         {
-          "name": "Ose Okhihan",
-          "votes": 1
-        },
-        {
           "name": "Ryan Belkin",
-          "votes": 1
-        },
-        {
-          "name": "Callen Bronson",
           "votes": 1
         },
         {
@@ -2045,12 +2125,12 @@
           "votes": 10
         },
         {
-          "name": "Garner Duncan",
-          "votes": 9
+          "name": "Sam Samani",
+          "votes": 10
         },
         {
-          "name": "Sam Samani",
-          "votes": 8
+          "name": "Garner Duncan",
+          "votes": 9
         },
         {
           "name": "Ethan Romer",
@@ -2066,6 +2146,10 @@
         },
         {
           "name": "Thomas Sneed",
+          "votes": 2
+        },
+        {
+          "name": "Ashal Ali",
           "votes": 2
         },
         {
@@ -2093,15 +2177,15 @@
           "votes": 1
         },
         {
-          "name": "Ashal Ali",
-          "votes": 1
-        },
-        {
           "name": "Weston Hicks",
           "votes": 1
         },
         {
           "name": "Gabe Stankovich",
+          "votes": 1
+        },
+        {
+          "name": "Drew Cunningham",
           "votes": 1
         }
       ]
@@ -2111,7 +2195,7 @@
       "results": [
         {
           "name": "Callen Bronson",
-          "votes": 18
+          "votes": 20
         },
         {
           "name": "Nirvaan",
@@ -2119,6 +2203,10 @@
         },
         {
           "name": "Garner Duncan",
+          "votes": 2
+        },
+        {
+          "name": "Wiley Kendall",
           "votes": 2
         },
         {
@@ -2135,10 +2223,6 @@
         },
         {
           "name": "Thomas Sneed",
-          "votes": 1
-        },
-        {
-          "name": "Wiley Kendall",
           "votes": 1
         },
         {
@@ -2212,6 +2296,10 @@
         {
           "name": "Tommy Mccomb",
           "votes": 1
+        },
+        {
+          "name": "Ose Okhihan",
+          "votes": 1
         }
       ]
     },
@@ -2220,11 +2308,11 @@
       "results": [
         {
           "name": "Wiley Kendall",
-          "votes": 15
+          "votes": 16
         },
         {
           "name": "David John",
-          "votes": 8
+          "votes": 9
         },
         {
           "name": "Callen Bronson",
@@ -2251,6 +2339,14 @@
           "votes": 2
         },
         {
+          "name": "Justin Juebner",
+          "votes": 2
+        },
+        {
+          "name": "Bobby McAdams",
+          "votes": 2
+        },
+        {
           "name": "Ben Manning",
           "votes": 1
         },
@@ -2271,10 +2367,6 @@
           "votes": 1
         },
         {
-          "name": "Justin Juebner",
-          "votes": 1
-        },
-        {
           "name": "Moritz Schreyogg",
           "votes": 1
         },
@@ -2289,10 +2381,6 @@
         {
           "name": "Ryan Belkin",
           "votes": 1
-        },
-        {
-          "name": "Bobby McAdams",
-          "votes": 1
         }
       ]
     },
@@ -2301,11 +2389,11 @@
       "results": [
         {
           "name": "Andrew Christofferson",
-          "votes": 14
+          "votes": 16
         },
         {
           "name": "Jack Younger",
-          "votes": 8
+          "votes": 9
         },
         {
           "name": "Adrian Mendoza Perez",
@@ -2366,6 +2454,10 @@
         {
           "name": "Vincent Zhou",
           "votes": 1
+        },
+        {
+          "name": "Ilan Arias",
+          "votes": 1
         }
       ]
     },
@@ -2374,14 +2466,14 @@
       "results": [
         {
           "name": "Ose Okhihan",
-          "votes": 33
-        },
-        {
-          "name": "Adrian Mendoza Perez",
-          "votes": 3
+          "votes": 36
         },
         {
           "name": "David John",
+          "votes": 4
+        },
+        {
+          "name": "Adrian Mendoza Perez",
           "votes": 3
         },
         {
@@ -2427,7 +2519,7 @@
       "results": [
         {
           "name": "Gentry Otero",
-          "votes": 16
+          "votes": 18
         },
         {
           "name": "Edgar Diaz",
@@ -2438,11 +2530,11 @@
           "votes": 5
         },
         {
-          "name": "Ben Manning",
-          "votes": 2
+          "name": "Quinn Simmons",
+          "votes": 3
         },
         {
-          "name": "Quinn Simmons",
+          "name": "Ben Manning",
           "votes": 2
         },
         {
@@ -2508,6 +2600,10 @@
         {
           "name": "Weston Hicks",
           "votes": 1
+        },
+        {
+          "name": "Kenna Nabi",
+          "votes": 1
         }
       ]
     },
@@ -2516,7 +2612,7 @@
       "results": [
         {
           "name": "Madhav Prakash",
-          "votes": 9
+          "votes": 12
         },
         {
           "name": "Sam Samani",
@@ -2524,7 +2620,7 @@
         },
         {
           "name": "Barrow Solomon",
-          "votes": 5
+          "votes": 6
         },
         {
           "name": "Ilan Arias",
@@ -2605,15 +2701,19 @@
       "results": [
         {
           "name": "David John",
-          "votes": 12
+          "votes": 13
         },
         {
           "name": "Alex Acra",
-          "votes": 7
+          "votes": 8
         },
         {
           "name": "Callen Bronson",
           "votes": 5
+        },
+        {
+          "name": "Madhav Prakash",
+          "votes": 3
         },
         {
           "name": "Gabe Stankovich",
@@ -2632,15 +2732,15 @@
           "votes": 2
         },
         {
-          "name": "Madhav Prakash",
-          "votes": 2
-        },
-        {
           "name": "Weston Hicks",
           "votes": 2
         },
         {
           "name": "Reid Hammer",
+          "votes": 2
+        },
+        {
+          "name": "Barrow Solomon",
           "votes": 2
         },
         {
@@ -2657,10 +2757,6 @@
         },
         {
           "name": "Brayden Hagle",
-          "votes": 1
-        },
-        {
-          "name": "Barrow Solomon",
           "votes": 1
         },
         {
@@ -2705,15 +2801,19 @@
           "votes": 3
         },
         {
+          "name": "Weston Hicks",
+          "votes": 3
+        },
+        {
+          "name": "Sam Samani",
+          "votes": 2
+        },
+        {
           "name": "Alex Acra",
           "votes": 2
         },
         {
           "name": "Caymus Rooney",
-          "votes": 2
-        },
-        {
-          "name": "Weston Hicks",
           "votes": 2
         },
         {
@@ -2726,10 +2826,6 @@
         },
         {
           "name": "Thomas Sneed",
-          "votes": 1
-        },
-        {
-          "name": "Sam Samani",
           "votes": 1
         },
         {
@@ -2747,6 +2843,14 @@
         {
           "name": "Adam Rourke",
           "votes": 1
+        },
+        {
+          "name": "Will Reimers",
+          "votes": 1
+        },
+        {
+          "name": "Edgar Diaz",
+          "votes": 1
         }
       ]
     },
@@ -2755,7 +2859,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 8
+          "votes": 9
         },
         {
           "name": "Theo Chiang",
@@ -2763,11 +2867,11 @@
         },
         {
           "name": "Will Reimers",
-          "votes": 4
+          "votes": 5
         },
         {
           "name": "Callen Bronson",
-          "votes": 3
+          "votes": 4
         },
         {
           "name": "Josue Arevalo",
@@ -2844,6 +2948,10 @@
         {
           "name": "Yash Mehta",
           "votes": 1
+        },
+        {
+          "name": "Brayden Hagle",
+          "votes": 1
         }
       ]
     },
@@ -2852,7 +2960,7 @@
       "results": [
         {
           "name": "Alex Acra",
-          "votes": 42
+          "votes": 43
         },
         {
           "name": "Moritz Schreyogg",
@@ -2868,6 +2976,18 @@
         },
         {
           "name": "Brayden Hagle",
+          "votes": 1
+        },
+        {
+          "name": "Garner Duncan",
+          "votes": 1
+        },
+        {
+          "name": "David John",
+          "votes": 1
+        },
+        {
+          "name": "Patrick Holden",
           "votes": 1
         }
       ]
@@ -2885,18 +3005,22 @@
         },
         {
           "name": "Gabe George",
-          "votes": 5
+          "votes": 6
+        },
+        {
+          "name": "Drew Cunningham",
+          "votes": 4
         },
         {
           "name": "Garner Duncan",
           "votes": 3
         },
         {
-          "name": "Jack Younger",
+          "name": "Wiley Kendall",
           "votes": 3
         },
         {
-          "name": "Drew Cunningham",
+          "name": "Jack Younger",
           "votes": 3
         },
         {
@@ -2905,10 +3029,6 @@
         },
         {
           "name": "Mathurin LeDorze",
-          "votes": 2
-        },
-        {
-          "name": "Wiley Kendall",
           "votes": 2
         },
         {
@@ -2954,6 +3074,10 @@
         {
           "name": "Elan Lerner",
           "votes": 1
+        },
+        {
+          "name": "Nirvaan",
+          "votes": 1
         }
       ]
     },
@@ -2962,11 +3086,11 @@
       "results": [
         {
           "name": "Sam Samani",
-          "votes": 14
+          "votes": 15
         },
         {
           "name": "Alex Nania",
-          "votes": 11
+          "votes": 12
         },
         {
           "name": "Ethan Romer",
@@ -2974,6 +3098,10 @@
         },
         {
           "name": "Josh Koo",
+          "votes": 3
+        },
+        {
+          "name": "Nirvaan",
           "votes": 3
         },
         {
@@ -3013,10 +3141,6 @@
           "votes": 1
         },
         {
-          "name": "Nirvaan",
-          "votes": 1
-        },
-        {
           "name": "Loran Baxter Mercado",
           "votes": 1
         },
@@ -3031,18 +3155,18 @@
       "results": [
         {
           "name": "Wiley Kendall",
-          "votes": 13
+          "votes": 14
         },
         {
           "name": "Maddox de Bretteville",
           "votes": 7
         },
         {
-          "name": "Callen Bronson",
-          "votes": 3
+          "name": "David John",
+          "votes": 4
         },
         {
-          "name": "David John",
+          "name": "Callen Bronson",
           "votes": 3
         },
         {
@@ -3124,6 +3248,14 @@
         {
           "name": "Sami Raskin",
           "votes": 1
+        },
+        {
+          "name": "Quinn Simmons",
+          "votes": 1
+        },
+        {
+          "name": "Hudson Addams",
+          "votes": 1
         }
       ]
     },
@@ -3132,7 +3264,7 @@
       "results": [
         {
           "name": "Andrew Christofferson",
-          "votes": 14
+          "votes": 16
         },
         {
           "name": "Oscar Hanson",
@@ -3152,7 +3284,7 @@
         },
         {
           "name": "Rod Azghadi",
-          "votes": 2
+          "votes": 3
         },
         {
           "name": "Hudson Addams",
@@ -3205,6 +3337,10 @@
         {
           "name": "Vincent Zhou",
           "votes": 1
+        },
+        {
+          "name": "Drew Cunningham",
+          "votes": 1
         }
       ]
     },
@@ -3213,7 +3349,7 @@
       "results": [
         {
           "name": "Ilan Arias",
-          "votes": 15
+          "votes": 17
         },
         {
           "name": "Edgar Diaz",
@@ -3232,15 +3368,15 @@
           "votes": 3
         },
         {
+          "name": "Andrew Christofferson",
+          "votes": 3
+        },
+        {
           "name": "Kaimana Kau",
           "votes": 2
         },
         {
           "name": "Alex Nania",
-          "votes": 2
-        },
-        {
-          "name": "Andrew Christofferson",
           "votes": 2
         },
         {
@@ -3278,6 +3414,10 @@
         {
           "name": "Vincent Zhou",
           "votes": 1
+        },
+        {
+          "name": "Ethan Romer",
+          "votes": 1
         }
       ]
     },
@@ -3285,16 +3425,16 @@
       "title": "Biggest cousin fucker",
       "results": [
         {
+          "name": "Allen Thomason",
+          "votes": 16
+        },
+        {
           "name": "Garner Duncan",
           "votes": 15
         },
         {
-          "name": "Allen Thomason",
-          "votes": 14
-        },
-        {
           "name": "Weston Hicks",
-          "votes": 3
+          "votes": 4
         },
         {
           "name": "Hudson Addams",
@@ -3351,6 +3491,10 @@
         {
           "name": "Ilan Arias",
           "votes": 1
+        },
+        {
+          "name": "Barrow Solomon",
+          "votes": 1
         }
       ]
     },
@@ -3363,14 +3507,14 @@
         },
         {
           "name": "Nirvaan",
-          "votes": 6
-        },
-        {
-          "name": "Callen Bronson",
-          "votes": 4
+          "votes": 7
         },
         {
           "name": "Yash Mehta",
+          "votes": 5
+        },
+        {
+          "name": "Callen Bronson",
           "votes": 4
         },
         {
@@ -3382,15 +3526,15 @@
           "votes": 3
         },
         {
+          "name": "David John",
+          "votes": 3
+        },
+        {
           "name": "Vincent Zhou",
           "votes": 2
         },
         {
           "name": "Jared Hammerstrom",
-          "votes": 2
-        },
-        {
-          "name": "David John",
           "votes": 2
         },
         {
@@ -3432,6 +3576,10 @@
         {
           "name": "Rod Azghadi",
           "votes": 1
+        },
+        {
+          "name": "Ose Okhihan",
+          "votes": 1
         }
       ]
     },
@@ -3440,11 +3588,11 @@
       "results": [
         {
           "name": "Nirvaan",
-          "votes": 16
+          "votes": 18
         },
         {
           "name": "Alex Acra",
-          "votes": 13
+          "votes": 14
         },
         {
           "name": "Madhav Prakash",
@@ -3481,6 +3629,10 @@
         {
           "name": "Jules Lustig",
           "votes": 1
+        },
+        {
+          "name": "Yash Mehta",
+          "votes": 1
         }
       ]
     },
@@ -3489,7 +3641,7 @@
       "results": [
         {
           "name": "Ben Manning",
-          "votes": 6
+          "votes": 8
         },
         {
           "name": "Gentry Otero",
@@ -3521,6 +3673,10 @@
         },
         {
           "name": "Ilan Arias",
+          "votes": 2
+        },
+        {
+          "name": "Brayden Hagle",
           "votes": 2
         },
         {
@@ -3564,10 +3720,6 @@
           "votes": 1
         },
         {
-          "name": "Brayden Hagle",
-          "votes": 1
-        },
-        {
           "name": "Edgar Diaz",
           "votes": 1
         },
@@ -3590,6 +3742,10 @@
         {
           "name": "Connor Fogarty",
           "votes": 1
+        },
+        {
+          "name": "Drew Cunningham",
+          "votes": 1
         }
       ]
     },
@@ -3598,7 +3754,7 @@
       "results": [
         {
           "name": "David John",
-          "votes": 17
+          "votes": 19
         },
         {
           "name": "Bobby McAdams",
@@ -3606,7 +3762,7 @@
         },
         {
           "name": "Will Reimers",
-          "votes": 6
+          "votes": 7
         },
         {
           "name": "Nirvaan",
@@ -3650,6 +3806,10 @@
         },
         {
           "name": "Madhav Prakash",
+          "votes": 1
+        },
+        {
+          "name": "Garner Duncan",
           "votes": 1
         }
       ]
