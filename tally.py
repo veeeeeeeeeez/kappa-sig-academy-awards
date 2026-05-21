@@ -9,6 +9,18 @@ from pathlib import Path
 CSV_PATH = Path("/Users/vincentzhou/Downloads/academy_awards_extracted/Academy Awardzzorz.csv")
 OUT_PATH = Path("/Users/vincentzhou/academy_awards/results.json")
 
+# Manual overrides applied AFTER tallying. Map award title -> ordered list of
+# (name, votes) tuples for the desired top positions. Any name already in the
+# tally has its vote count replaced; anyone else in the tally is re-ranked
+# below the overrides by their original vote count.
+OVERRIDES: dict[str, list[tuple[str, int]]] = {
+    "Most fucked search history": [
+        ("Wiley Kendall", 10),
+        ("Sam Samani", 8),
+        ("David John", 7),
+    ],
+}
+
 
 def normalize(name: str) -> str:
     return re.sub(r"\s+", " ", name).strip()
@@ -42,6 +54,13 @@ def main() -> None:
         ranked = counter.most_common()
         if not ranked:
             continue
+
+        if title in OVERRIDES:
+            forced = OVERRIDES[title]
+            forced_names = {name for name, _ in forced}
+            remainder = [(n, v) for n, v in ranked if n not in forced_names]
+            ranked = list(forced) + remainder
+
         awards.append({
             "title": title,
             "results": [
