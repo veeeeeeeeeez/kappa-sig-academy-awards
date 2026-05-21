@@ -41,13 +41,14 @@ function makeHonorableSlide(award, idx) {
 
   slide.innerHTML = `
     <div class="hm-award-title">${escapeHTML(award.title)}</div>
-    <div class="hm-banner">HONORABLE MENTION</div>
+    <div class="hm-banner">Honorable Mention</div>
     <div class="hm-figure">
       <div class="hm-ribbon">4TH PLACE</div>
       <div class="avatar hm-avatar">${escapeHTML(hm ? initials(hm.name) || "?" : "—")}</div>
       <div class="hm-name">${escapeHTML(hm ? hm.name : "—")}</div>
       <div class="hm-votes">${hm ? hm.votes : 0} vote${hm && hm.votes === 1 ? "" : "s"}</div>
     </div>
+    <div class="hm-prompt">press space to reveal</div>
     <div class="hm-sub">so close, yet so far</div>
   `;
   return slide;
@@ -154,18 +155,28 @@ function setActive(idx, opts = {}) {
   state.cur = idx;
   state.reveal = 0;
   resetReveals();
-  if (opts.fullyReveal && currentSlide().dataset.stage === "award") {
-    currentSlide().querySelectorAll(".spot").forEach(s => s.classList.add("revealed"));
-    state.reveal = 3;
+  if (opts.fullyReveal) {
+    const slide = currentSlide();
+    if (slide.dataset.stage === "award") {
+      slide.querySelectorAll(".spot").forEach(s => s.classList.add("revealed"));
+      state.reveal = 3;
+    } else if (slide.dataset.stage === "hm") {
+      slide.classList.add("revealed");
+      state.reveal = 1;
+    }
   }
   updateHUD();
 }
 
 function resetReveals() {
   const slide = currentSlide();
-  if (!slide || slide.dataset.stage !== "award") return;
-  slide.classList.remove("drumroll-active");
-  slide.querySelectorAll(".spot").forEach(s => s.classList.remove("revealed"));
+  if (!slide) return;
+  if (slide.dataset.stage === "award") {
+    slide.classList.remove("drumroll-active");
+    slide.querySelectorAll(".spot").forEach(s => s.classList.remove("revealed"));
+  } else if (slide.dataset.stage === "hm") {
+    slide.classList.remove("revealed");
+  }
 }
 
 function updateHUD() {
@@ -192,6 +203,14 @@ function updateHUD() {
 function advance() {
   if (state.busy) return;
   const slide = currentSlide();
+  if (slide.dataset.stage === "hm" && state.reveal === 0) {
+    slide.classList.add("revealed");
+    state.reveal = 1;
+    // Soft chime when the HM is unveiled.
+    tone(392, 0.4, "sine", 0.08);
+    tone(587, 0.5, "triangle", 0.07, 0.05);
+    return;
+  }
   if (slide.dataset.stage === "award" && state.reveal < 3) {
     const nextKey = PLACES[state.reveal].key;
     if (nextKey === "gold") {
@@ -236,6 +255,11 @@ function back() {
     const key = PLACES[state.reveal].key;
     const spot = slide.querySelector(`.spot.${key}`);
     spot.classList.remove("revealed");
+    return;
+  }
+  if (slide.dataset.stage === "hm" && state.reveal > 0) {
+    slide.classList.remove("revealed");
+    state.reveal = 0;
     return;
   }
   if (state.cur > 0) {

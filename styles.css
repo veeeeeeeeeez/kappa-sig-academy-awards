@@ -398,90 +398,103 @@ kbd {
 }
 
 .hm-award-title {
-  font-size: clamp(1.4rem, 3.4vw, 2.8rem);
+  font-size: clamp(1.1rem, 2.4vw, 2rem);
   font-weight: 700;
   letter-spacing: 0.04em;
   background: linear-gradient(180deg, #fff7c2, var(--gold) 70%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
   text-wrap: balance;
   max-width: 90vw;
 }
 
 .hm-banner {
-  font-size: clamp(2rem, 6vw, 5rem);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  color: #f3d6ff;
-  text-shadow: 0 0 30px rgba(243, 214, 255, 0.5), 0 0 60px rgba(168, 50, 178, 0.4);
-  margin-bottom: 2.5rem;
-  animation: hm-pulse 2.6s ease-in-out infinite;
-}
-
-@keyframes hm-pulse {
-  0%, 100% { transform: scale(1); text-shadow: 0 0 24px rgba(243, 214, 255, 0.4), 0 0 50px rgba(168, 50, 178, 0.35); }
-  50%      { transform: scale(1.04); text-shadow: 0 0 40px rgba(243, 214, 255, 0.7), 0 0 80px rgba(168, 50, 178, 0.55); }
+  font-size: clamp(1.1rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #e3c0ff;
+  text-shadow: 0 0 18px rgba(227, 192, 255, 0.45);
+  margin-bottom: 1.6rem;
+  opacity: 0.9;
 }
 
 .hm-figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  padding: 2rem 3rem;
-  background: linear-gradient(180deg, rgba(20, 8, 32, 0.75), rgba(40, 14, 60, 0.75));
-  border: 2px solid rgba(243, 214, 255, 0.35);
-  border-radius: 20px;
-  box-shadow: 0 0 60px rgba(168, 50, 178, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.04);
-  animation: hm-rise 0.7s cubic-bezier(.2,.9,.3,1.3) both;
+  gap: 0.55rem;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(180deg, rgba(20, 8, 32, 0.7), rgba(40, 14, 60, 0.7));
+  border: 1px solid rgba(227, 192, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 36px rgba(168, 50, 178, 0.22), inset 0 0 20px rgba(255, 255, 255, 0.03);
+
+  /* hidden until revealed */
+  opacity: 0;
+  transform: translateY(20px) scale(0.94);
+  transition: opacity 0.5s ease, transform 0.55s cubic-bezier(.2,.9,.3,1.3);
 }
 
-@keyframes hm-rise {
-  from { opacity: 0; transform: translateY(30px) scale(0.92); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+.hm-slide.revealed .hm-figure {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .hm-ribbon {
-  font-size: 0.8rem;
-  letter-spacing: 0.4em;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
   color: #e3c0ff;
-  padding: 0.25rem 0.9rem;
-  border: 1px solid rgba(227, 192, 255, 0.5);
+  padding: 0.18rem 0.7rem;
+  border: 1px solid rgba(227, 192, 255, 0.45);
   border-radius: 999px;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
+  opacity: 0.85;
 }
 
 .hm-avatar {
-  width: clamp(110px, 14vw, 170px);
-  height: clamp(110px, 14vw, 170px);
-  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  width: clamp(72px, 8vw, 110px);
+  height: clamp(72px, 8vw, 110px);
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
   border-color: #d8b6ff !important;
-  box-shadow: 0 0 40px rgba(216, 182, 255, 0.5), inset 0 -8px 16px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 0 24px rgba(216, 182, 255, 0.4), inset 0 -6px 12px rgba(0,0,0,0.4) !important;
 }
 
 .hm-name {
-  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-  font-weight: 800;
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  font-weight: 700;
   color: var(--text);
   text-wrap: balance;
   max-width: 70vw;
 }
 
 .hm-votes {
-  font-size: 1rem;
-  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
   color: #c9b07a;
 }
 
-.hm-sub {
-  margin-top: 2rem;
-  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+.hm-prompt {
+  margin-top: 1.4rem;
+  font-size: 0.75rem;
   letter-spacing: 0.3em;
-  color: rgba(255, 245, 220, 0.5);
-  font-style: italic;
+  color: rgba(255, 255, 255, 0.45);
+  opacity: 0;
+  animation: pulse 1.8s ease-in-out infinite;
 }
+.hm-slide:not(.revealed) .hm-prompt { opacity: 1; }
+
+.hm-sub {
+  margin-top: 1.2rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  letter-spacing: 0.3em;
+  color: rgba(255, 245, 220, 0.45);
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+.hm-slide.revealed .hm-sub { opacity: 1; }
 
 /* ===== DRUMROLL OVERLAY (gold reveal) ===== */
 .drumroll-overlay {
