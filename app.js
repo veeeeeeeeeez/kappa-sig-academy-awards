@@ -166,6 +166,7 @@ function setActive(idx, opts = {}) {
     }
   }
   updateHUD();
+  if (typeof highlightTOC === "function") highlightTOC();
 }
 
 function resetReveals() {
@@ -419,6 +420,19 @@ function fanfareSfx() {
 
 // ===== Keyboard =====
 document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (document.body.classList.contains("toc-open")) {
+      e.preventDefault();
+      closeTOC();
+    }
+    return;
+  }
+  if (e.key === "t" || e.key === "T") {
+    e.preventDefault();
+    toggleTOC();
+    return;
+  }
+  if (document.body.classList.contains("toc-open")) return;
   if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
     e.preventDefault();
     advance();
@@ -437,8 +451,72 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("click", (e) => {
   if (e.target.closest("#hud") || e.target.closest("#hint")) return;
+  if (e.target.closest("#toc") || e.target.closest("#toc-toggle") || e.target.closest("#toc-backdrop")) return;
   advance();
 });
+
+// ===== Table of Contents =====
+function openTOC() {
+  document.body.classList.add("toc-open");
+  document.getElementById("toc-toggle").setAttribute("aria-expanded", "true");
+  document.getElementById("toc").setAttribute("aria-hidden", "false");
+  highlightTOC();
+  // Scroll current item into view.
+  const cur = document.querySelector(".toc-item.current");
+  if (cur) cur.scrollIntoView({ block: "center", behavior: "instant" in window ? "instant" : "auto" });
+}
+function closeTOC() {
+  document.body.classList.remove("toc-open");
+  document.getElementById("toc-toggle").setAttribute("aria-expanded", "false");
+  document.getElementById("toc").setAttribute("aria-hidden", "true");
+}
+function toggleTOC() {
+  if (document.body.classList.contains("toc-open")) closeTOC();
+  else openTOC();
+}
+
+function buildTOC(awards) {
+  const list = document.getElementById("toc-list");
+  list.innerHTML = "";
+  awards.forEach((award, idx) => {
+    const li = document.createElement("li");
+    li.className = "toc-item";
+    li.dataset.awardIdx = String(idx);
+    li.innerHTML = `<span class="toc-num">${idx + 1}.</span><span class="toc-text"></span>`;
+    li.querySelector(".toc-text").textContent = award.title;
+    li.addEventListener("click", () => jumpToAward(idx));
+    list.appendChild(li);
+  });
+}
+
+function jumpToAward(awardIdx) {
+  // Slide layout: intro (0), then [hm, podium] x N, outro
+  const targetIdx = 1 + awardIdx * 2;
+  setActive(targetIdx);
+  closeTOC();
+}
+
+function highlightTOC() {
+  const slide = currentSlide();
+  let curAwardIdx = -1;
+  if (slide && (slide.dataset.stage === "hm" || slide.dataset.stage === "award")) {
+    curAwardIdx = parseInt(slide.dataset.idx, 10);
+  }
+  document.querySelectorAll(".toc-item").forEach((el) => {
+    const i = parseInt(el.dataset.awardIdx, 10);
+    el.classList.toggle("current", i === curAwardIdx);
+  });
+}
+
+document.getElementById("toc-toggle").addEventListener("click", (e) => {
+  e.stopPropagation();
+  toggleTOC();
+});
+document.getElementById("toc-close").addEventListener("click", (e) => {
+  e.stopPropagation();
+  closeTOC();
+});
+document.getElementById("toc-backdrop").addEventListener("click", closeTOC);
 
 // ===== Boot =====
 (async () => {
@@ -454,5 +532,6 @@ document.addEventListener("click", (e) => {
 
   state.slides = [intro, ...container.children, outro];
   state.awardCount = data.awards.length;
+  buildTOC(data.awards);
   setActive(0);
 })();
