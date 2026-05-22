@@ -1,72 +1,70 @@
 #!/usr/bin/env python3
-"""Tally Academy Awards CSV responses and emit JSON for the slideshow."""
+"""Read the curated results CSV and emit results.json for the slideshow.
+
+The curated CSV is hand-finalized podium output, not raw responses:
+
+    Timestamp, <Award 1>, <Award 2>, ...
+    1ST,       <name>,    <name>,    ...
+    2ND,       <name>,    <name>,    ...
+    3RD,       <name>,    <name>,    ...
+    Count 1,   <int>,     <int>,     ...
+    Count 2,   <int>,     <int>,     ...
+    Count 3,   <int>,     <int>,     ...
+
+A previous version of this script tallied raw responses; that lives in
+git history if anyone needs to redo the math from scratch.
+"""
 import csv
 import json
 import re
-from collections import Counter
 from pathlib import Path
 
-CSV_PATH = Path("/Users/vincentzhou/Downloads/academy_awards_extracted/Academy Awardzzorz.csv")
+CSV_PATH = Path("/Users/vincentzhou/academy_awards/curated_results.csv")
 OUT_PATH = Path("/Users/vincentzhou/academy_awards/results.json")
 
-# Manual overrides applied AFTER tallying. Map award title -> ordered list of
-# (name, votes) tuples for the desired top positions. Any name already in the
-# tally has its vote count replaced; anyone else in the tally is re-ranked
-# below the overrides by their original vote count.
-OVERRIDES: dict[str, list[tuple[str, int]]] = {
-    "Most fucked search history": [
-        ("Wiley Kendall", 10),
-        ("Sam Samani", 8),
-        ("David John", 7),
-    ],
-}
 
-
-def normalize(name: str) -> str:
+def clean(name: str) -> str:
     return re.sub(r"\s+", " ", name).strip()
 
 
-def split_votes(cell: str) -> list[str]:
-    cell = cell.strip()
-    if not cell:
-        return []
-    # Some cells (e.g. "Best couple") have semicolon-separated multi-pick answers.
-    parts = [normalize(p) for p in cell.split(";")]
-    return [p for p in parts if p]
+def parse_int(s: str) -> int:
+    s = s.strip()
+    if not s:
+        return 0
+    try:
+        return int(s)
+    except ValueError:
+        return 0
 
 
 def main() -> None:
     with CSV_PATH.open(newline="", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        header = next(reader)
-        rows = list(reader)
+        rows = list(csv.reader(f))
+
+    header = rows[0]
+    by_label = {row[0].strip().lower(): row for row in rows[1:]}
+    first = by_label.get("1st")
+    second = by_label.get("2nd")
+    third = by_label.get("3rd")
+    c1 = by_label.get("count 1")
+    c2 = by_label.get("count 2")
+    c3 = by_label.get("count 3")
 
     awards = []
-    # Skip the Timestamp column (index 0).
     for col_idx in range(1, len(header)):
-        title = header[col_idx]
-        counter: Counter[str] = Counter()
-        for row in rows:
-            if col_idx >= len(row):
-                continue
-            for vote in split_votes(row[col_idx]):
-                counter[vote] += 1
-        ranked = counter.most_common()
-        if not ranked:
+        title = header[col_idx].strip()
+        if not title:
             continue
-
-        if title in OVERRIDES:
-            forced = OVERRIDES[title]
-            forced_names = {name for name, _ in forced}
-            remainder = [(n, v) for n, v in ranked if n not in forced_names]
-            ranked = list(forced) + remainder
-
-        awards.append({
-            "title": title,
-            "results": [
-                {"name": name, "votes": votes} for name, votes in ranked
-            ],
-        })
+        results = []
+        for name_row, count_row in [(first, c1), (second, c2), (third, c3)]:
+            name = clean(name_row[col_idx]) if name_row else ""
+            votes = parse_int(count_row[col_idx]) if count_row else 0
+            if not name:
+                continue
+            results.append({"name": name, "votes": votes})
+        if not results:
+            continue
+        awards.append({"title": title, "results": results})
 
     OUT_PATH.write_text(json.dumps({"awards": awards}, indent=2))
     print(f"Wrote {len(awards)} awards -> {OUT_PATH}")

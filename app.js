@@ -56,6 +56,13 @@ function attachAvatarImages(root = document) {
   });
 }
 
+// Split a "Best couple"-style combined name into individual people.
+function splitCouple(name) {
+  if (!name) return [];
+  const parts = name.split(/\s*(?:,| and | & )\s*/i).map(p => p.trim()).filter(Boolean);
+  return parts.length >= 2 ? parts : [name];
+}
+
 async function loadResults() {
   const resp = await fetch("results.json");
   return await resp.json();
@@ -122,10 +129,25 @@ function makePodiumSlide(award, idx) {
       fig.appendChild(crown);
     }
 
-    const avatar = document.createElement("div");
-    avatar.className = "avatar";
-    avatar.textContent = initials(data.name) || "?";
-    if (data.name && data.name !== "—") avatar.dataset.name = data.name;
+    const people = splitCouple(data.name);
+    let avatarHolder;
+    if (people.length > 1) {
+      avatarHolder = document.createElement("div");
+      avatarHolder.className = "avatar-group";
+      for (const person of people) {
+        const a = document.createElement("div");
+        a.className = "avatar avatar-small";
+        a.textContent = initials(person) || "?";
+        if (person && person !== "—") a.dataset.name = person;
+        avatarHolder.appendChild(a);
+      }
+    } else {
+      avatarHolder = document.createElement("div");
+      avatarHolder.className = "avatar";
+      avatarHolder.textContent = initials(data.name) || "?";
+      if (data.name && data.name !== "—") avatarHolder.dataset.name = data.name;
+    }
+    const avatar = avatarHolder;
 
     const card = document.createElement("div");
     card.className = "name-card";
@@ -175,6 +197,7 @@ function escapeHTML(s) {
 const state = {
   slides: [],
   awardCount: 0,
+  awardStartIdx: [], // awardStartIdx[i] = first slide index for award i
   cur: 0,
   reveal: 0,      // 0..3 podium reveal state
   busy: false,    // true during drumroll, blocks input
@@ -522,8 +545,8 @@ function buildTOC(awards) {
 }
 
 function jumpToAward(awardIdx) {
-  // Slide layout: intro (0), then [hm, podium] x N, outro
-  const targetIdx = 1 + awardIdx * 2;
+  const targetIdx = state.awardStartIdx[awardIdx];
+  if (targetIdx == null) return;
   setActive(targetIdx);
   closeTOC();
 }
@@ -558,12 +581,25 @@ document.getElementById("toc-backdrop").addEventListener("click", closeTOC);
   const outro = document.querySelector(".outro");
 
   data.awards.forEach((award, idx) => {
-    container.appendChild(makeHonorableSlide(award, idx));
+    // HM (4th place) slide only when we have a 4th nominee in the results.
+    if (award.results.length >= 4 && award.results[3] && award.results[3].name) {
+      container.appendChild(makeHonorableSlide(award, idx));
+    }
     container.appendChild(makePodiumSlide(award, idx));
   });
 
   state.slides = [intro, ...container.children, outro];
   state.awardCount = data.awards.length;
+
+  // Index the first slide for each award so the TOC can jump to it.
+  state.awardStartIdx = new Array(state.awardCount).fill(null);
+  state.slides.forEach((slide, i) => {
+    const stage = slide.dataset.stage;
+    if (stage !== "hm" && stage !== "award") return;
+    const idx = parseInt(slide.dataset.idx, 10);
+    if (state.awardStartIdx[idx] == null) state.awardStartIdx[idx] = i;
+  });
+
   buildTOC(data.awards);
   attachAvatarImages();
   setActive(0);
