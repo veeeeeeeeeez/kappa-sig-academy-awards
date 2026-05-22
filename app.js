@@ -26,6 +26,36 @@ function initials(name) {
     .join("");
 }
 
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+const AVATAR_EXTS = ["jpg", "jpeg", "png", "webp"];
+
+function tryLoadAvatar(avatarEl, name, exts = AVATAR_EXTS) {
+  if (!exts.length) return;
+  const slug = slugify(name);
+  const ext = exts[0];
+  const img = new Image();
+  img.onload = () => {
+    avatarEl.classList.add("has-image");
+    avatarEl.style.backgroundImage = `url("images/${slug}.${ext}")`;
+  };
+  img.onerror = () => tryLoadAvatar(avatarEl, name, exts.slice(1));
+  img.src = `images/${slug}.${ext}`;
+}
+
+function attachAvatarImages(root = document) {
+  root.querySelectorAll(".avatar[data-name]").forEach((el) => {
+    tryLoadAvatar(el, el.dataset.name);
+  });
+}
+
 async function loadResults() {
   const resp = await fetch("results.json");
   return await resp.json();
@@ -39,12 +69,13 @@ function makeHonorableSlide(award, idx) {
   slide.dataset.stage = "hm";
   slide.dataset.idx = String(idx);
 
+  const hmName = hm ? hm.name : "";
   slide.innerHTML = `
     <div class="hm-award-title">${escapeHTML(award.title)}</div>
     <div class="hm-banner">Honorable Mention</div>
     <div class="hm-figure">
       <div class="hm-ribbon">4TH PLACE</div>
-      <div class="avatar hm-avatar">${escapeHTML(hm ? initials(hm.name) || "?" : "—")}</div>
+      <div class="avatar hm-avatar"${hmName ? ` data-name="${escapeHTML(hmName)}"` : ""}>${escapeHTML(hm ? initials(hm.name) || "?" : "—")}</div>
       <div class="hm-name">${escapeHTML(hm ? hm.name : "—")}</div>
       <div class="hm-votes">${hm ? hm.votes : 0} vote${hm && hm.votes === 1 ? "" : "s"}</div>
     </div>
@@ -94,6 +125,7 @@ function makePodiumSlide(award, idx) {
     const avatar = document.createElement("div");
     avatar.className = "avatar";
     avatar.textContent = initials(data.name) || "?";
+    if (data.name && data.name !== "—") avatar.dataset.name = data.name;
 
     const card = document.createElement("div");
     card.className = "name-card";
@@ -533,5 +565,6 @@ document.getElementById("toc-backdrop").addEventListener("click", closeTOC);
   state.slides = [intro, ...container.children, outro];
   state.awardCount = data.awards.length;
   buildTOC(data.awards);
+  attachAvatarImages();
   setActive(0);
 })();
