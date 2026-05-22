@@ -564,6 +564,28 @@ body.toc-open #toc {
   border-width: 2px;
 }
 
+/* Couple avatar: defaults to the split (group). If a combined image loads,
+   the wrap gets .has-combined and the single avatar takes over. */
+.avatar-couple-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.7rem;
+}
+.avatar-couple-wrap .avatar-group {
+  margin-bottom: 0;
+}
+.avatar-couple-wrap .avatar-combined {
+  display: none;
+  margin-bottom: 0;
+}
+.avatar-couple-wrap.has-combined .avatar-group {
+  display: none;
+}
+.avatar-couple-wrap.has-combined .avatar-combined {
+  display: flex;
+}
+
 .spot.gold .avatar   { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 210, 74, 0.7), 0 6px 20px rgba(0,0,0,0.5); }
 .spot.silver .avatar { border-color: var(--silver); box-shadow: 0 0 24px rgba(216, 216, 224, 0.6), 0 6px 20px rgba(0,0,0,0.5); }
 .spot.bronze .avatar { border-color: var(--bronze); box-shadow: 0 0 20px rgba(214, 138, 76, 0.6), 0 6px 20px rgba(0,0,0,0.5); }

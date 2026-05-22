@@ -45,6 +45,12 @@ function tryLoadAvatar(avatarEl, name, exts = AVATAR_EXTS) {
   img.onload = () => {
     avatarEl.classList.add("has-image");
     avatarEl.style.backgroundImage = `url("images/${slug}.${ext}")`;
+    // If this is the "combined" avatar for a couple, swap the wrap to show
+    // the single combined image instead of the side-by-side split.
+    const wrap = avatarEl.closest(".avatar-couple-wrap");
+    if (wrap && avatarEl.classList.contains("avatar-combined")) {
+      wrap.classList.add("has-combined");
+    }
   };
   img.onerror = () => tryLoadAvatar(avatarEl, name, exts.slice(1));
   img.src = `images/${slug}.${ext}`;
@@ -132,15 +138,28 @@ function makePodiumSlide(award, idx) {
     const people = splitCouple(data.name);
     let avatarHolder;
     if (people.length > 1) {
+      // Render both: a side-by-side group, plus a hidden combined avatar.
+      // If a combined image (slug from the full couple name) loads, the
+      // wrap swaps to show it instead.
       avatarHolder = document.createElement("div");
-      avatarHolder.className = "avatar-group";
+      avatarHolder.className = "avatar-couple-wrap";
+
+      const group = document.createElement("div");
+      group.className = "avatar-group";
       for (const person of people) {
         const a = document.createElement("div");
         a.className = "avatar avatar-small";
         a.textContent = initials(person) || "?";
         if (person && person !== "—") a.dataset.name = person;
-        avatarHolder.appendChild(a);
+        group.appendChild(a);
       }
+      avatarHolder.appendChild(group);
+
+      const combined = document.createElement("div");
+      combined.className = "avatar avatar-combined";
+      combined.textContent = initials(data.name) || "?";
+      if (data.name && data.name !== "—") combined.dataset.name = data.name;
+      avatarHolder.appendChild(combined);
     } else {
       avatarHolder = document.createElement("div");
       avatarHolder.className = "avatar";
