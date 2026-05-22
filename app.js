@@ -93,7 +93,6 @@ function makeHonorableSlide(award, idx) {
       <div class="hm-votes">${hm ? hm.votes : 0} vote${hm && hm.votes === 1 ? "" : "s"}</div>
     </div>
     <div class="hm-prompt">press space to reveal</div>
-    <div class="hm-sub">so close, yet so far</div>
   `;
   return slide;
 }
